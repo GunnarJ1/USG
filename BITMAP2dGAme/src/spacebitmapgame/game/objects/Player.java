@@ -53,6 +53,7 @@ public class Player extends Entity {
 		g.setColor(Color.blue);
 		g.draw(getBounds());
 		g.drawImage(icon, (int)x, (int)y, null);
+		g.drawString(""+velx, 10, 10);
 		super.render(g);
 	}
 
@@ -113,9 +114,11 @@ public class Player extends Entity {
 			isJumping = true;
 		}
 		
+
+		
 		if (keyHandler.isKeyDown(KeyEvent.VK_D) && !Check.CollisionBlock(getRightBounds())) {
 			if (velx == 0) {
-				velx = .02f;
+				velx = .08f;
 			}
 			if (velx < termVelx)
 				velx += .08f * velx;
@@ -126,7 +129,7 @@ public class Player extends Entity {
 
 		if (keyHandler.isKeyDown(KeyEvent.VK_A) && !Check.CollisionBlock(getLeftBounds())) {
 			if (velx == 0) {
-				velx = .02f;
+				velx = .08f;
 			} 
 
 			if (velx < termVelx)
@@ -137,7 +140,12 @@ public class Player extends Entity {
 		} 
 		
 		if (!keyHandler.isKeyDown(KeyEvent.VK_D) && !keyHandler.isKeyDown(KeyEvent.VK_A)) {
-			velx -= .1f * velx;
+			if (velx >= .1f)
+				velx -= .05f * velx;
+			if (velx <= .1f) {
+				velx = 0;
+				direction = 0;
+			}
 		}
 		
 		
