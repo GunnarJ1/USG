@@ -18,6 +18,8 @@ public class Player extends Entity {
 	private int termVel = 12;
 	private int termVelx = 4;
 	private int direction = 0;
+	private int startJumpY;
+	private int jumpHeight;
 	private boolean isJumping = false;
 	private InputHandler keyHandler = Game.handler;
 	private BufferedImage icon = new SpriteSheet("CharacterTileSet (1)", 0, 0).getSheet();
@@ -28,17 +30,13 @@ public class Player extends Entity {
 		height = 64;
 		gravity = 0.08f;
 		vely = .1f;
+		jumpHeight = 2;
 	}
 	
 	public void tick() {
 		super.tick();
 		//Gravity
 		//Physics Check
-		if (vely == 0 ) vely = .5f;
-			if (vely < termVel)	
-				vely += gravity * vely;
-			else
-				vely = termVel;
 		checks();
 		
 		if (direction == 1)
@@ -48,10 +46,6 @@ public class Player extends Entity {
 			x += -velx;
 		
 		y += vely;
-		
-		if (y-vely >= Game.GAME_HEIGHT*Game.SCALE) {
-			System.err.println(vely);
-		}
 		
 	}
 
@@ -63,6 +57,26 @@ public class Player extends Entity {
 	}
 
 	private void checks() {
+		//Gravity
+		if (!isJumping) {	
+			if (vely == 0 ) vely = .5f;
+			if (vely < termVel)	
+				vely += gravity * vely;
+			else
+				vely = termVel;
+		}
+		
+		if (isJumping) {
+			if (jumpHeight - y > startJumpY) {
+//				System.out.println(y, ju);
+				vely = 0;
+				isJumping = false;
+			} else {
+				
+			}
+		}
+		
+		
 		//Collision
 		if (Check.CollisionBlock(getBottomBounds())) {
 			vely = 0;			
@@ -92,16 +106,11 @@ public class Player extends Entity {
 		}
 		
 		//--Ending of collision
-		if (isJumping) {
-			
-			vely -= gravity * -vely;
-			if (vely <= 0)
-				isJumping = false;
-		}
 		
 		//Inputs
 		if (!isJumping && vely == 0 && keyHandler.isKeyDown(KeyEvent.VK_SPACE)) { 
-			vely += -5;
+			startJumpY = (int)y;
+			vely += -4;
 			isJumping = true;
 		}
 		
