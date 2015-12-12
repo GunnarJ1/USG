@@ -30,7 +30,7 @@ public class Player extends Entity {
 		height = 64;
 		gravity = 0.08f;
 		vely = .1f;
-		jumpHeight = 2;
+		jumpHeight = 64;
 	}
 	
 	public void tick() {
@@ -67,15 +67,14 @@ public class Player extends Entity {
 		}
 		
 		if (isJumping) {
-			if (jumpHeight - y > startJumpY) {
-//				System.out.println(y, ju);
+			if (y < startJumpY-jumpHeight) {
 				vely = 0;
 				isJumping = false;
-			} else {
-				
+			} else if (Check.CollisionBlock(getBottomBounds()) || Check.CollisionBlock(getTopBounds())){
+				vely = 0;
+				isJumping = false;
 			}
 		}
-		
 		
 		//Collision
 		if (Check.CollisionBlock(getBottomBounds())) {
@@ -108,9 +107,9 @@ public class Player extends Entity {
 		//--Ending of collision
 		
 		//Inputs
-		if (!isJumping && vely == 0 && keyHandler.isKeyDown(KeyEvent.VK_SPACE)) { 
+		if (!isJumping && vely == 0 && keyHandler.isKeyDown(KeyEvent.VK_SPACE) && Check.CollisionBlock(getBottomBounds())) { 
 			startJumpY = (int)y;
-			vely += -4;
+			vely += -5;
 			isJumping = true;
 		}
 		
