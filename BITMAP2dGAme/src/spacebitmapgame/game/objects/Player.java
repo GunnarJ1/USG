@@ -15,14 +15,17 @@ public class Player extends Entity {
 
 	// TODO FIX JUMPING
 	
-	private int termVel = 12;
-	private int termVelx = 4;
+	private int termVel = 12; //Fastest velocity falling
+	private int termVelx = 4; //Fastest speed for X velocity
 	private int direction = 0;
-	private int startJumpY;
-	private int jumpHeight;
-	private boolean isJumping = false;
-	private InputHandler keyHandler = Game.handler;
-	private BufferedImage icon = new SpriteSheet("CharacterTileSet (1)", 0, 0).getSheet();
+	
+	private int jumpSpeed; //The velocity of the jump
+	private int startJumpY; //The position jumping from
+	private int jumpHeight; //The max height of jump
+	private boolean isJumping = false; //Tells whether the player is jumping or not
+	
+	private InputHandler keyHandler = Game.handler; //The key input detector
+	private BufferedImage icon = new SpriteSheet("CharacterTileSet (1)", 0, 0).getSheet(); //Player image
 	
 	public Player() {
 		super(80, 10, ID.Player);
@@ -31,6 +34,7 @@ public class Player extends Entity {
 		gravity = 0.08f;
 		vely = .1f;
 		jumpHeight = 64;
+		jumpSpeed = 4;
 	}
 	
 	public void tick() {
@@ -74,6 +78,8 @@ public class Player extends Entity {
 			} else if (Check.CollisionBlock(getBottomBounds()) || Check.CollisionBlock(getTopBounds())){
 				vely = 0;
 				isJumping = false;
+			} else {
+				vely += .15f;
 			}
 		}
 		
@@ -110,7 +116,7 @@ public class Player extends Entity {
 		//Inputs
 		if (!isJumping && vely == 0 && keyHandler.isKeyDown(KeyEvent.VK_SPACE) && Check.CollisionBlock(getBottomBounds())) { 
 			startJumpY = (int)y;
-			vely += -5;
+			vely += -jumpSpeed;
 			isJumping = true;
 		}
 		
