@@ -124,22 +124,22 @@ public class Player extends Entity {
 		
 		if (keyHandler.isKeyDown(KeyEvent.VK_D) && !Check.CollisionBlock(getRightBounds())) {
 			if (velx == 0) {
-				velx = .08f;
+				velx = .18f;
 			}
 			if (velx < termVelx)
-				velx += .08f * velx;
+				velx += .18f * velx;
 			else
-				velx = termVelx;
+		 		velx = termVelx;
 			direction = 1;
 		} 
 
 		if (keyHandler.isKeyDown(KeyEvent.VK_A) && !Check.CollisionBlock(getLeftBounds())) {
 			if (velx == 0) {
-				velx = .08f;
+				velx = .18f;
 			} 
 
 			if (velx < termVelx)
-				velx += .08f * velx;
+				velx += .18f * velx;
 			else
 				velx = termVelx;
 			direction = 2;
