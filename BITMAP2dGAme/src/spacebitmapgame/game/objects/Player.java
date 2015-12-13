@@ -15,9 +15,10 @@ public class Player extends Entity {
 
 	// TODO FIX JUMPING
 	
-	private int termVel = 12; //Fastest velocity falling
-	private int termVelx = 4; //Fastest speed for X velocity
-	private int direction = 0;
+	private int termVel; //Fastest velocity falling
+	private int termVelx; //Fastest speed for X velocity
+	private int direction;
+	private int friction;
 	
 	private int jumpSpeed; //The velocity of the jump
 	private int startJumpY; //The position jumping from
@@ -32,6 +33,9 @@ public class Player extends Entity {
 		width = 32;
 		height = 64;
 		gravity = 0.08f;
+		termVel = 12;
+		termVelx = 2;
+		direction = 0;
 		vely = .1f;
 		jumpHeight = 64;
 		jumpSpeed = 4;
@@ -50,6 +54,9 @@ public class Player extends Entity {
 			x += -velx;
 		
 		y += vely;
+		
+		if (y >= Game.GAME_HEIGHT)
+			System.exit(-1);;
 		
 	}
 

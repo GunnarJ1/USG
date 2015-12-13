@@ -20,7 +20,10 @@ public class Game extends Canvas implements Runnable{
 
 	private static final long serialVersionUID = 1L;
 	public static InputHandler handler;
+	
 	public static ArrayList<GameObject> objectList = new ArrayList<GameObject>();
+//	public static 
+	
 	public static final int GAME_WIDTH = 426;
 	public static final int GAME_HEIGHT = 240;
 	public static final int SCALE = 2;
