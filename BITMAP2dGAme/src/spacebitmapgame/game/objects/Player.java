@@ -6,6 +6,8 @@ import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 
+import org.lwjgl.input.Keyboard;
+
 import spacebitmapgame.game.Game;
 import spacebitmapgame.utils.Check;
 import spacebitmapgame.utils.InputHandler;
@@ -13,7 +15,7 @@ import spacebitmapgame.utils.SpriteSheet;
 
 public class Player extends Entity {
 
-	// TODO FIX JUMPING
+	// TODO FIX COMMENTED CODE
 	
 	private int termVel; //Fastest velocity falling
 	private int termVelx; //Fastest speed for X velocity
@@ -25,8 +27,9 @@ public class Player extends Entity {
 	private int jumpHeight; //The max height of jump
 	private boolean isJumping = false; //Tells whether the player is jumping or not
 	
-	private InputHandler keyHandler = Game.handler; //The key input detector
+//	private InputHandler keyHandler = Game.handler; //The key input detector
 	private BufferedImage icon = new SpriteSheet("CharacterTileSet (1)", 0, 0).getSheet(); //Player image
+	
 	
 	public Player() {
 		super(80, 10, ID.Player);
@@ -55,9 +58,9 @@ public class Player extends Entity {
 		
 		y += vely;
 		
-		if (y >= Game.GAME_HEIGHT)
-			System.exit(-1);;
-		
+//		if (y >= Game.GAME_HEIGHT)
+//			System.exit(-1);;
+//		
 	}
 
 	public void render(Graphics2D g) {
@@ -69,98 +72,98 @@ public class Player extends Entity {
 	}
 
 	private void checks() {
-		//Gravity
-		if (!isJumping) {	
-			if (vely == 0 ) vely = .5f;
-			if (vely < termVel)	
-				vely += gravity * vely;
-			else
-				vely = termVel;
-		}
-		
-		if (isJumping) {
-			if (y < startJumpY-jumpHeight) {
-				vely = 0;
-				isJumping = false;
-			} else if (Check.CollisionBlock(getBottomBounds()) || Check.CollisionBlock(getTopBounds())){
-				vely = 0;
-				isJumping = false;
-			} else {
-				vely += .15f;
-			}
-		}
-		
-		//Collision
-		if (Check.CollisionBlock(getBottomBounds())) {
-			vely = 0;			
-			int tempY = (int)Check.CollidingBlock(getBottomBounds()).getY();
-			if (y+height > tempY+2) {
-				y = tempY-height;
-			}
-		}
-		
-		if (Check.CollisionBlock(getLeftBounds())) {
-			Rectangle temp = Check.CollidingBlock(getLeftBounds());
-			int rx = (int) temp.getX();
-			int rw = (int) temp.getWidth();
-			if (x < (rw + rx) - 1) {
-				x = rx + rw;
-				velx = 0;
-			}
-		}
-		
-		if (Check.CollisionBlock(getRightBounds())) {
-			Rectangle temp = Check.CollidingBlock(getRightBounds());
-			int rx = (int) temp.getX();
-			if (x+width > rx + 1) {
-				velx = 0;
-				x = rx-width;
-			}
-		}
-		
-		//--Ending of collision
-		
-		//Inputs
-		if (!isJumping && vely == 0 && keyHandler.isKeyDown(KeyEvent.VK_SPACE) && Check.CollisionBlock(getBottomBounds())) { 
-			startJumpY = (int)y;
-			vely += -jumpSpeed;
-			isJumping = true;
-		}
-		
-
-		
-		if (keyHandler.isKeyDown(KeyEvent.VK_D) && !Check.CollisionBlock(getRightBounds())) {
-			if (velx == 0) {
-				velx = .18f;
-			}
-			if (velx < termVelx)
-				velx += .18f * velx;
-			else
-		 		velx = termVelx;
-			direction = 1;
-		} 
-
-		if (keyHandler.isKeyDown(KeyEvent.VK_A) && !Check.CollisionBlock(getLeftBounds())) {
-			if (velx == 0) {
-				velx = .18f;
-			} 
-
-			if (velx < termVelx)
-				velx += .18f * velx;
-			else
-				velx = termVelx;
-			direction = 2;
-		} 
-		
-		if (!keyHandler.isKeyDown(KeyEvent.VK_D) && !keyHandler.isKeyDown(KeyEvent.VK_A)) {
-			if (velx >= .1f)
-				velx -= .05f * velx;
-			if (velx <= .1f) {
-				velx = 0;
-				direction = 0;
-			}
-		}
-		
+//		//Gravity
+//		if (!isJumping) {	
+//			if (vely == 0 ) vely = .5f;
+//			if (vely < termVel)	
+//				vely += gravity * vely;
+//			else
+//				vely = termVel;
+//		}
+//		
+//		if (isJumping) {
+//			if (y < startJumpY-jumpHeight) {
+//				vely = 0;
+//				isJumping = false;
+//			} else if (Check.CollisionBlock(getBottomBounds()) || Check.CollisionBlock(getTopBounds())){
+//				vely = 0;
+//				isJumping = false;
+//			} else {
+//				vely += .15f;
+//			}
+//		}
+//		
+//		//Collision
+//		if (Check.CollisionBlock(getBottomBounds())) {
+//			vely = 0;			
+//			int tempY = (int)Check.CollidingBlock(getBottomBounds()).getY();
+//			if (y+height > tempY+2) {
+//				y = tempY-height;
+//			}
+//		}
+//		
+//		if (Check.CollisionBlock(getLeftBounds())) {
+//			Rectangle temp = Check.CollidingBlock(getLeftBounds());
+//			int rx = (int) temp.getX();
+//			int rw = (int) temp.getWidth();
+//			if (x < (rw + rx) - 1) {
+//				x = rx + rw;
+//				velx = 0;
+//			}
+//		}
+//		
+//		if (Check.CollisionBlock(getRightBounds())) {
+//			Rectangle temp = Check.CollidingBlock(getRightBounds());
+//			int rx = (int) temp.getX();
+//			if (x+width > rx + 1) {
+//				velx = 0;
+//				x = rx-width;
+//			}
+//		}
+//		
+//		//--Ending of collision
+//		
+//		//Inputs
+////		if (!isJumping && vely == 0 && keyHandler.isKeyDown(KeyEvent.VK_SPACE) && Check.CollisionBlock(getBottomBounds())) { 
+////			startJumpY = (int)y;
+////			vely += -jumpSpeed;
+////			isJumping = true;
+////		}
+////		
+//
+//		
+//		if (Keyboard.getEventKey() == Keyboard.KEY_D && !Check.CollisionBlock(getRightBounds())) {
+//			if (velx == 0) {
+//				velx = .18f;
+//			}
+//			if (velx < termVelx)
+//				velx += .18f * velx;
+//			else
+//		 		velx = termVelx;
+//			direction = 1;
+//		} 
+//
+//		if (Keyboard.getEventKey() == Keyboard.KEY_A && !Check.CollisionBlock(getLeftBounds())) {
+//			if (velx == 0) {
+//				velx = .18f;
+//			} 
+//
+//			if (velx < termVelx)
+//				velx += .18f * velx;
+//			else
+//				velx = termVelx;
+//			direction = 2;
+//		} 
+//
+//		if ( Keyboard.getEventKey() != Keyboard.KEY_D && Keyboard.getEventKey() != Keyboard.KEY_A) {
+//			if (velx >= .1f)
+//				velx -= .05f * velx;
+//			if (velx <= .1f) {
+//				velx = 0;
+//				direction = 0;
+//			}
+//		}
+//		
 		
 	}
 	
