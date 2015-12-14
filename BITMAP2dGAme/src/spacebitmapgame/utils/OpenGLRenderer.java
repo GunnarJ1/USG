@@ -1,10 +1,15 @@
 package spacebitmapgame.utils;
 
 
+import java.util.ArrayList;
+
 import org.lwjgl.LWJGLException;
+import org.lwjgl.Sys;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
+import org.lwjgl.util.vector.Vector3f;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import spacebitmapgame.game.Game;
 import spacebitmapgame.game.objects.Player;
@@ -32,14 +37,21 @@ public class OpenGLRenderer {
 		
 		//Initializes games variables
 		init();
-		
-		player = new Player(50, 50);
+		Game.entities = new ArrayList<Entity>();
+		player = new Player(50, 50, AbstractEntity.loadTexture("image"));
+		Game.entities.add(player);
+		for (int i = 0; i < 20; i++) {
+			Game.entities.add(new Block(i*32, 400, new Vector3f(0, 1, 1), AbstractEntity.loadTexture("image")));
+		}
 		
 		while (!Display.isCloseRequested()) {
 			//Render
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
 			
-			player.draw();
+			for (Entity entity : Game.entities) {
+				entity.update(getDelta());
+				entity.draw();
+			}
 			
 			Display.update();
 			Display.sync(60);
@@ -49,8 +61,20 @@ public class OpenGLRenderer {
 	}
 	
 	private void init() {
+	
 	}
 	
+	private long lastFame;
 	
+	private long getTime() {
+		return (Sys.getTime() * 1000) / Sys.getTimerResolution();
+	}
+	
+	private int getDelta() {
+		long currentTime = getTime();
+		int delta = (int)(currentTime - lastFame);
+		lastFame = getTime();
+		return delta;
+	}
 	
 }

@@ -13,12 +13,12 @@ public abstract class AbstractEntity implements Entity{
 	
 	protected Rectangle hitbox;
 	protected float x, y, width, height; 
+	protected Texture texture;
 	protected Vector3f color;
-	protected Texture texture = null;
 	protected int id;
 	
 	public AbstractEntity() {
-		texture = loadTexture("image");
+	
 	}
 	
 	public void update(int delta) {
@@ -76,7 +76,11 @@ public abstract class AbstractEntity implements Entity{
 	public Texture getTexture() {
 		return texture;
 	}
-
+	
+	protected void setTexture(Texture text) {
+		this.texture = text;
+	}
+	
 	@Override
 	public void setLocation(float x, float y) {
 		this.x = x;
@@ -97,6 +101,4 @@ public abstract class AbstractEntity implements Entity{
 		hitbox.setBounds((int)x, (int)y, (int)width, (int)height);
 		return  hitbox.intersects(other.getX(), other.getY(), other.getWidth(), other.getHeight());
 	}
-
-	
 }

@@ -7,7 +7,8 @@ public class AbstractMoveableEntity extends AbstractEntity implements MoveableEn
 	
 	@Override
 	public void update(int delta) {
-	
+		x += velx;
+		y += vely;
 	}
 	
 	@Override
