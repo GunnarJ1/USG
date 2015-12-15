@@ -11,8 +11,11 @@ import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glMatrixMode;
 import static org.lwjgl.opengl.GL11.glOrtho;
 
+import java.io.File;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -46,9 +49,9 @@ public class Boot {
 		//Initializes games variables
 		init();
 		
-		grid.setAt(10, 10, BlockType.Dirt);
-		grid.setAt(11, 10, BlockType.Stone);
-		grid.setAt(12, 10, BlockType.Grass);
+//		grid.setAt(10, 10, BlockType.Dirt);
+//		grid.setAt(11, 10, BlockType.Stone);
+//		grid.setAt(12, 10, BlockType.Grass);
 		while (!Display.isCloseRequested()) {
 			//Render
 			glClear(GL_COLOR_BUFFER_BIT);
@@ -82,12 +85,28 @@ public class Boot {
 	private void inputs() {
 		int mouseX = Mouse.getX();
 		int mouseY = Game.HEIGHT - Mouse.getY() - 1;
-		boolean isClicked = Mouse.isButtonDown(1);
-		if (isClicked) {
+
+		if (Mouse.isButtonDown(0)) {
+			int grid_x = Math.round(mouseX / World.BLOCK_SIZE);
+			int grid_y = Math.round(mouseY / World.BLOCK_SIZE);
+			grid.setAt(grid_x, grid_y, BlockType.Grass);
+			System.out.println("" + grid_x);
+		}
+		
+		if (Mouse.isButtonDown(1)) {
 			int grid_x = Math.round(mouseX / World.BLOCK_SIZE);
 			int grid_y = Math.round(mouseY / World.BLOCK_SIZE);
 			grid.setAt(grid_x, grid_y, BlockType.Dirt);
-			System.out.println("" + grid_x);
+		}
+		
+		while (Keyboard.next()) {
+			if (Keyboard.getEventKey() == Keyboard.KEY_S) {
+				grid.save(new File("save.xml"));
+			}
+			
+			if (Keyboard.getEventKey() == Keyboard.KEY_L) {
+				grid.load(new File("save.xml"));
+			}
 		}
 	}
 	

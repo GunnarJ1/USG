@@ -14,7 +14,7 @@ import org.newdawn.slick.opengl.TextureLoader;
 
 
 public class Block {
-	protected BlockType type = BlockType.Air;
+	protected BlockType type = BlockType.Dirt;
 	protected float x, y;
 	protected Texture texture;
 
@@ -25,10 +25,8 @@ public class Block {
 		try {
 			texture = TextureLoader.getTexture("PNG", new FileInputStream(new File("res/" + type.location + ".png")));
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
