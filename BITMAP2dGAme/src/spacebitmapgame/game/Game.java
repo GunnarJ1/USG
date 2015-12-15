@@ -12,7 +12,7 @@ public class Game {
 	public static List<Entity> entities;
 	
 	public static void main(String[] args) {
-		new OpenGLRenderer(856, 480, "TEST ENGINE");
+		new Boot(856, 480, "TEST ENGINE");
 	}
 	
 }
