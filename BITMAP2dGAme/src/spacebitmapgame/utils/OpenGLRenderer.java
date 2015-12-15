@@ -41,13 +41,13 @@ public class OpenGLRenderer {
 		player = new Player(50, 50, AbstractEntity.loadTexture("image"));
 		Game.entities.add(player);
 		for (int i = 0; i < 20; i++) {
-			Game.entities.add(new Block(i*32, 400, new Vector3f(0, 1, 1), AbstractEntity.loadTexture("image")));
+			Game.entities.add(new Block(i*32, 400, new Vector3f(0, 1, 0), AbstractEntity.loadTexture("image")));
 		}
 		
 		while (!Display.isCloseRequested()) {
 			//Render
 			GL11.glClear(GL11.GL_COLOR_BUFFER_BIT);
-			
+
 			for (Entity entity : Game.entities) {
 				entity.update(getDelta());
 				entity.draw();
