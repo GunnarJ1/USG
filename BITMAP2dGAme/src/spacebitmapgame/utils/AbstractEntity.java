@@ -16,6 +16,7 @@ public abstract class AbstractEntity implements Entity{
 	protected Texture texture;
 	protected Vector3f color;
 	protected int id;
+	protected boolean isSolid;
 	
 	public AbstractEntity() {
 	
@@ -31,6 +32,18 @@ public abstract class AbstractEntity implements Entity{
 	
 	public void init() {
 	
+	}
+	
+	public void isSolid(boolean is) {
+		isSolid = is;
+	}
+	
+	public boolean isSolid() {
+		return this.isSolid;
+	}
+	
+	public Rectangle getHitbox() {
+		return new Rectangle((int)x, (int)y, (int)width, (int)height);
 	}
 	
 	public float getX() {

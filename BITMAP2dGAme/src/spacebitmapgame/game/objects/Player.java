@@ -6,6 +6,7 @@ import org.newdawn.slick.opengl.Texture;
 
 import spacebitmapgame.game.Game;
 import spacebitmapgame.utils.AbstractMoveableEntity;
+import spacebitmapgame.utils.Check;
 
 
 public class  Player extends AbstractMoveableEntity {
@@ -32,6 +33,7 @@ public class  Player extends AbstractMoveableEntity {
 			System.exit(-1);
 		
 		inputs();
+		collisionCheck();
 		super.update(delta);
 	}
 	
@@ -67,6 +69,9 @@ public class  Player extends AbstractMoveableEntity {
 	}
 	
 	private void collisionCheck() {
-		
+		if (Check.collionBlock(bottomHitbox())) {
+			y = y - vely;
+			vely = 0;
+		}
 	}
 }

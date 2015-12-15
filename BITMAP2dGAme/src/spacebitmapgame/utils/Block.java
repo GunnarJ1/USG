@@ -1,5 +1,7 @@
 package spacebitmapgame.utils;
 
+import java.awt.Rectangle;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Vector3f;
 import org.newdawn.slick.opengl.Texture;
@@ -15,6 +17,7 @@ public class Block extends AbstractEntity {
 		this.texture = texture;
 		width = 32;
 		height = 32;
+		isSolid = true;
 	}
 	
 	@Override
@@ -31,6 +34,13 @@ public class Block extends AbstractEntity {
 			GL11.glTexCoord2f(0, 1);
 			GL11.glVertex2f(x, y+height);
 		GL11.glEnd();
+	}
+
+	@Override
+	public Rectangle hitbox() {
+		Rectangle hb = new Rectangle();
+		hb.setBounds((int)x, (int)y, (int)width, (int)height);
+		return hb;
 	}
 	
 }
