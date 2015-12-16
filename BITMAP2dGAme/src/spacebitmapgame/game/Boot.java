@@ -13,6 +13,8 @@ import static org.lwjgl.opengl.GL11.glOrtho;
 
 import java.io.File;
 
+import javax.swing.plaf.basic.BasicSplitPaneUI.KeyboardEndHandler;
+
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
@@ -106,14 +108,25 @@ public class Boot {
 			
 		if (Keyboard.isKeyDown(Keyboard.KEY_L)) {
 			grid.load(new File("save.xml"));
+			selectedBlock = grid.getAt(0, 0).getType(); 
 		}
 			
+		if (Keyboard.isKeyDown(Keyboard.KEY_C)) {
+			grid.clearShitOffScreen();
+		}
+		
 		if (Keyboard.isKeyDown(Keyboard.KEY_1)) {
 			selectedBlock = BlockType.Stone;
+			grid.setAt(0, 0, selectedBlock);
 		} else if (Keyboard.isKeyDown(Keyboard.KEY_2)) {
 			selectedBlock = BlockType.Dirt;
+			grid.setAt(0, 0, selectedBlock);
 		} else if (Keyboard.isKeyDown(Keyboard.KEY_3)) {
 			selectedBlock = BlockType.Grass;
+			grid.setAt(0, 0, selectedBlock);
+		} else if (Keyboard.isKeyDown(Keyboard.KEY_4)) {
+			selectedBlock = BlockType.Random;
+			grid.setAt(0, 0, selectedBlock);
 		}
 		
 	}

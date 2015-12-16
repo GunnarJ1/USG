@@ -1,13 +1,19 @@
 package spacebitmapgame.utils;
 
+import static org.lwjgl.opengl.GL11.GL_QUADS;
+import static org.lwjgl.opengl.GL11.glBegin;
+import static org.lwjgl.opengl.GL11.glEnd;
+import static org.lwjgl.opengl.GL11.glLoadIdentity;
+import static org.lwjgl.opengl.GL11.glTexCoord2f;
+import static org.lwjgl.opengl.GL11.glTranslatef;
+import static org.lwjgl.opengl.GL11.glVertex2f;
 import static spacebitmapgame.utils.World.BLOCK_SIZE;
-import static org.lwjgl.opengl.GL11.*;
 
-import java.io.FileInputStream;
+import java.awt.Rectangle;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-
 
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
@@ -45,7 +51,12 @@ public class Block {
 			glTexCoord2f(0, 1);
 			glVertex2f(0, BLOCK_SIZE);
 		glEnd();
+		glTranslatef(-x, -y, 0);
 		glLoadIdentity();
+	}
+
+	public Rectangle hitbox() {
+		return new Rectangle((int)x, (int)y, BLOCK_SIZE, BLOCK_SIZE);
 	}
 	
 	public BlockType getType() {

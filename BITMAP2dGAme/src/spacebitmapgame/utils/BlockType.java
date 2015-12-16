@@ -1,7 +1,9 @@
 package spacebitmapgame.utils;
 
 public enum BlockType {
-	Stone("stone", true), Air("air", false), Grass("grass", true), Dirt("dirt", true);
+	Stone("stone", true), Air("air", false), Grass("grass", true), 
+	Dirt("dirt", true), Random("image", false);
+	
 	public final String location;
 	public final boolean solid;
 	BlockType(String location, boolean solid) {
