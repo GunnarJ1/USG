@@ -19,13 +19,13 @@ public class BlockGrid {
 	private Block[][] blocks = new Block[MAP_WIDTH][MAP_HEIGHT];
 	
 	public BlockGrid(File loadFile) {
-		
+		load(loadFile);
 	}
 	
 	public BlockGrid() {
 		for (int x = 0; x < MAP_WIDTH - 1; x++) {
 			for (int y = 0; y < MAP_HEIGHT - 1; y++) {
-				blocks[x][y] = new Block(BlockType.Stone, x * World.BLOCK_SIZE, y * World.BLOCK_SIZE);
+				blocks[x][y] = new Block(BlockType.Air, x * World.BLOCK_SIZE, y * World.BLOCK_SIZE);
 			}
 		}
 	}

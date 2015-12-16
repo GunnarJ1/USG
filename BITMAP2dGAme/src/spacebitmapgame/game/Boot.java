@@ -29,6 +29,7 @@ public class Boot {
 
 //	private Player player;
 	private BlockGrid grid;
+	private BlockType selectedBlock = BlockType.Stone;
 	public Boot(int w, int h, String title) {
 		try {
 			Display.setDisplayMode(new DisplayMode(w, h));
@@ -89,25 +90,32 @@ public class Boot {
 		if (Mouse.isButtonDown(0)) {
 			int grid_x = Math.round(mouseX / World.BLOCK_SIZE);
 			int grid_y = Math.round(mouseY / World.BLOCK_SIZE);
-			grid.setAt(grid_x, grid_y, BlockType.Grass);
-			System.out.println("" + grid_x);
+			grid.setAt(grid_x, grid_y, selectedBlock);
+//			System.out.println("" + grid_x);
 		}
 		
 		if (Mouse.isButtonDown(1)) {
 			int grid_x = Math.round(mouseX / World.BLOCK_SIZE);
 			int grid_y = Math.round(mouseY / World.BLOCK_SIZE);
-			grid.setAt(grid_x, grid_y, BlockType.Dirt);
+			grid.setAt(grid_x, grid_y, BlockType.Air);
 		}
 		
-		while (Keyboard.next()) {
-			if (Keyboard.getEventKey() == Keyboard.KEY_S) {
-				grid.save(new File("save.xml"));
-			}
-			
-			if (Keyboard.getEventKey() == Keyboard.KEY_L) {
-				grid.load(new File("save.xml"));
-			}
+		if (Keyboard.isKeyDown(Keyboard.KEY_S)) {
+			grid.save(new File("save.xml"));
 		}
+			
+		if (Keyboard.isKeyDown(Keyboard.KEY_L)) {
+			grid.load(new File("save.xml"));
+		}
+			
+		if (Keyboard.isKeyDown(Keyboard.KEY_1)) {
+			selectedBlock = BlockType.Stone;
+		} else if (Keyboard.isKeyDown(Keyboard.KEY_2)) {
+			selectedBlock = BlockType.Dirt;
+		} else if (Keyboard.isKeyDown(Keyboard.KEY_3)) {
+			selectedBlock = BlockType.Grass;
+		}
+		
 	}
 	
 }
