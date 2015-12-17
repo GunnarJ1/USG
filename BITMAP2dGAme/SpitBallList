@@ -9,9 +9,24 @@ Rules:
 --Start of list
 	XML loaded items - with item design software we can make
 	Encrypted map file
+	Create Menu/GUI Buttons
+	Building/destroying blocks with player
+	Create more blocks/special blocks
 --End of list
 
 Really outside of the box list.
 --Start of list
-
+	Resource micromanagement
+	Atmospheric elements (waving trees, grass, grass moves when player moves through it)
+	Space exploration
 --End of list 
+
+Long-term List
+--Start of list
+	Minimap
+	Inventory System
+	Special blocks
+	Armor/health/food/oxygen system
+	Weapon integration
+	AI
+--End of List
