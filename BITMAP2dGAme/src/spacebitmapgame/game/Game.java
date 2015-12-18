@@ -8,11 +8,11 @@ import spacebitmapgame.utils.OpenGLRenderer;
 
 public class Game {
 	
-	public static final int WIDTH = 856, HEIGHT = 480;
+	public static final int WIDTH = 1024, HEIGHT = 768;
 	public static List<Entity> entities;
 	
 	public static void main(String[] args) {
-		new Boot(856, 480, "TEST ENGINE");
+		new Boot().start();
 	}
 	
 }

@@ -28,6 +28,7 @@ public class BlockGrid {
 				blocks[x][y] = new Block(BlockType.Air, x * World.BLOCK_SIZE, y * World.BLOCK_SIZE);
 			}
 		}
+		System.out.println("Finished task.");
 	}
 	
 	public void clearShitOffScreen() {
@@ -36,6 +37,7 @@ public class BlockGrid {
 				blocks[x][y] = new Block(BlockType.Air, x * World.BLOCK_SIZE, y * World.BLOCK_SIZE);
 			}
 		}
+		System.out.println("Finished task.");
 	}
 	
 	public void load(File loadFile) {
@@ -55,6 +57,7 @@ public class BlockGrid {
 			blocks[x][y] = new Block(BlockType.valueOf(e.getAttributeValue("type")),
 					x * World.BLOCK_SIZE, y * World.BLOCK_SIZE);
 		}
+		System.out.println("Finished task.");
 	}
 	
 	public void save(File saveFile) {
@@ -76,11 +79,11 @@ public class BlockGrid {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		System.out.println("Finished task.");
 	}
 	
 	public void setAt(int x, int y, BlockType b) {
-		blocks[x][y] = new Block(b, x*World.BLOCK_SIZE, y*World.BLOCK_SIZE);
+		blocks[x][y] = new Block(b, x * World.BLOCK_SIZE, y * World.BLOCK_SIZE);
 	}
 	
 	public Block getAt(int x, int y) {

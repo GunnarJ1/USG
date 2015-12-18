@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
@@ -33,12 +34,18 @@ public class Block {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("Couldn't find: " + type.location);
 		}
 	}
 
 	public void draw() {
 		texture.bind();
+		if (type != BlockType.Air)	
+			GL11.glColor3f(1, 1, 1);
+		else if (type == BlockType.Air)	
+			GL11.glColor3f(0, 0, 0);
+		
 		glLoadIdentity();
 		glTranslatef(x, y, 0);
 		glBegin(GL_QUADS);
