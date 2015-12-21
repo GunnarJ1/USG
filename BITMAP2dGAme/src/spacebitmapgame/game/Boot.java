@@ -128,7 +128,7 @@ public class Boot {
 		while (Keyboard.next()) {
 			if (Keyboard.getEventKeyState()) {
 				if (Keyboard.getEventKey() == Keyboard.KEY_F){
-					setDisplayMode(1024, 768, !Display.isFullscreen());
+					setDisplayMode(Game.WIDTH, Game.HEIGHT, !Display.isFullscreen());
 				}
 				else if(Keyboard.getEventKey() == Keyboard.KEY_V) {
 					vsync = !vsync;

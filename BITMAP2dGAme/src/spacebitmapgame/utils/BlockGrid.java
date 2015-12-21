@@ -13,6 +13,8 @@ import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
 
+import spacebitmapgame.game.Game;
+
 
 public class BlockGrid {
 	
@@ -93,7 +95,9 @@ public class BlockGrid {
 	public void draw() {
 		for (int x = 0; x < MAP_WIDTH - 1; x++) {
 			for (int y = 0; y < MAP_HEIGHT - 1; y++) {
-				blocks[x][y].draw();
+				Block block = blocks[x][y];
+				if (block.getX() >= 0 && block.getX() <= Game.WIDTH && block.getY() >= 0 && block.getY() <= Game.HEIGHT)	
+					block.draw();
 			}
 		}
 	}

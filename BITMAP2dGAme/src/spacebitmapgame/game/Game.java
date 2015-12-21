@@ -8,7 +8,8 @@ import spacebitmapgame.utils.OpenGLRenderer;
 
 public class Game {
 	
-	public static final int WIDTH = 1024, HEIGHT = 768;
+	public static final int SCALE = 2;
+	public static final int WIDTH = 800/2 * SCALE, HEIGHT = (600/2 * SCALE);
 	public static List<Entity> entities;
 	
 	public static void main(String[] args) {
