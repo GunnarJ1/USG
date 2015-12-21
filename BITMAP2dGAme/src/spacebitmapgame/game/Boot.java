@@ -89,7 +89,7 @@ public class Boot {
 		}
 			
 		if (Keyboard.isKeyDown(Keyboard.KEY_C)) {
-			grid.clearShitOffScreen();
+			grid.clearOffScreen();
 		}
 		
 		if (Keyboard.isKeyDown(Keyboard.KEY_1)) {

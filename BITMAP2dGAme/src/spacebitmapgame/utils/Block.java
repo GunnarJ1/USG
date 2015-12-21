@@ -32,7 +32,8 @@ public class Block {
 		try {
 			texture = TextureLoader.getTexture("PNG", new FileInputStream(new File("res/" + type.location + ".png")));
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+//			e.printStackTrace();
+			System.out.println("Couldn't find: " + type.location);
 		} catch (IOException e) {
 //			e.printStackTrace();
 			System.out.println("Couldn't find: " + type.location);
@@ -44,7 +45,7 @@ public class Block {
 		if (type != BlockType.Air)	
 			GL11.glColor3f(1, 1, 1);
 		else if (type == BlockType.Air)	
-			GL11.glColor3f(0, 0, 0);
+			GL11.glColor3f(.5f, .5f, .5f);
 		
 		glLoadIdentity();
 		glTranslatef(x, y, 0);

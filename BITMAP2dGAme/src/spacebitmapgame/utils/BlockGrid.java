@@ -30,10 +30,10 @@ public class BlockGrid {
 				blocks[x][y] = new Block(BlockType.Air, x * World.BLOCK_SIZE, y * World.BLOCK_SIZE);
 			}
 		}
-		System.out.println("Finished task.");
+//		System.out.println("Finished task.");
 	}
 	
-	public void clearShitOffScreen() {
+	public void clearOffScreen() {
 		for (int x = 0; x < MAP_WIDTH - 1; x++) {
 			for (int y = 0; y < MAP_HEIGHT - 1; y++) {
 				blocks[x][y] = new Block(BlockType.Air, x * World.BLOCK_SIZE, y * World.BLOCK_SIZE);
