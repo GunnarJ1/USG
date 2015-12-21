@@ -12,6 +12,7 @@ import org.jdom2.Element;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.XMLOutputter;
+import org.lwjgl.opengl.GL11;
 
 import spacebitmapgame.game.Game;
 
@@ -93,6 +94,7 @@ public class BlockGrid {
 	}
 	
 	public void draw() {
+		GL11.glClearColor(.3f, .3f, .3f, 0);
 		for (int x = 0; x < MAP_WIDTH - 1; x++) {
 			for (int y = 0; y < MAP_HEIGHT - 1; y++) {
 				Block block = blocks[x][y];

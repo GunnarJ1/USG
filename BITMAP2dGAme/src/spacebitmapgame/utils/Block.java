@@ -42,10 +42,7 @@ public class Block {
 
 	public void draw() {
 		texture.bind();
-		if (type != BlockType.Air)	
-			GL11.glColor3f(1, 1, 1);
-		else if (type == BlockType.Air)	
-			GL11.glColor3f(.5f, .5f, .5f);
+		GL11.glColor4f(1, 1, 1, .3f);
 		
 		glLoadIdentity();
 		glTranslatef(x, y, 0);
