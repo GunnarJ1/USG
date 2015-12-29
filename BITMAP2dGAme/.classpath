@@ -2,14 +2,13 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
-	<classpathentry kind="lib" path="lib/jars/lwjgl_util.jar"/>
-	<classpathentry kind="lib" path="C:/Users/alxmu/git/USG/BITMAP2dGAme/lib/jars/lwjgl.jar" sourcepath="C:/Users/alxmu/Downloads/lwjgl/src.zip">
-		<attributes>
-			<attribute name="javadoc_location" value="jar:file:/C:/Users/alxmu/Downloads/lwjgl/doc/javadoc.zip!/"/>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/alxmu/Downloads/lwjgl/native"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="lib" path="lib/jars/slick-util.jar"/>
 	<classpathentry kind="lib" path="lib/jars/jdom-2.0.6.jar"/>
+	<classpathentry kind="lib" path="jar/lwjgl.jar" sourcepath="src.zip">
+		<attributes>
+			<attribute name="javadoc_location" value="jar:platform:/resource/LudumDare/doc/javadoc.zip!/"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="LudumDare/native"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

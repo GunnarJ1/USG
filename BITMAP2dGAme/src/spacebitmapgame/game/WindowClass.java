@@ -42,7 +42,7 @@ public class WindowClass {
         try {
             init();
             loop();
- 
+            
             // Release window and window callbacks
             glfwDestroyWindow(window);
             keyCallback.release();
@@ -111,9 +111,9 @@ public class WindowClass {
         // the window or has pressed the ESCAPE key.
         while ( glfwWindowShouldClose(window) == GLFW_FALSE ) {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
- 
+            
             glfwSwapBuffers(window); // swap the color buffers
- 
+            
             // Poll for window events. The key callback above will only be
             // invoked during this call.
             glfwPollEvents();
