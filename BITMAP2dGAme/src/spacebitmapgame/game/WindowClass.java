@@ -2,7 +2,9 @@ package spacebitmapgame.game;
 import org.lwjgl.*;
 import org.lwjgl.glfw.*;
 import org.lwjgl.opengl.*;
- 
+
+import spacebitmapgame.utils.BlockGrid;
+
 import static org.lwjgl.glfw.GLFW.*;
 import static org.lwjgl.opengl.GL11.*;
 import static org.lwjgl.system.MemoryUtil.*;
@@ -12,6 +14,8 @@ import java.awt.GraphicsEnvironment;
  
 public class WindowClass {
  
+	public BlockGrid grid  = new BlockGrid();
+	
     // We need to strongly reference callback instances.
     private GLFWErrorCallback errorCallback;
     private GLFWKeyCallback   keyCallback;
@@ -78,6 +82,7 @@ public class WindowClass {
                 (vidmode.width() - WIDTH) / 2,
                 (vidmode.height() - HEIGHT) / 2
             );
+            
         }
         if ( window == NULL )
             throw new RuntimeException("Failed to create the GLFW window");
@@ -113,7 +118,7 @@ public class WindowClass {
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // clear the framebuffer
             
             glfwSwapBuffers(window); // swap the color buffers
-            
+            grid.draw();
             // Poll for window events. The key callback above will only be
             // invoked during this call.
             glfwPollEvents();
